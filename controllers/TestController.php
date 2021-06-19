@@ -6,7 +6,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 
-class TestController extends Controller
+class TestController extends BaseController
 {
     public $foo = 'variable';
     public $layout = 'test';
