@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+
 
 class SiteController extends BaseController
 {
@@ -124,5 +126,17 @@ class SiteController extends BaseController
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionUsers()
+    {
+
+        return $this->render('users');
+    }
+
+    public function actionComments()
+    {
+
+        return $this->render('comments');
     }
 }

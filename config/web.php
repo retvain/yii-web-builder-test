@@ -52,6 +52,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 ['class' => \yii\rest\UrlRule::class, 'controller' => 'user'],
+                ['class' => \yii\rest\UrlRule::class, 'controller' => 'comment'],
 
 //                '/users' => 'users/index',
 //                '/users/<id::\d+>' => 'users/show',

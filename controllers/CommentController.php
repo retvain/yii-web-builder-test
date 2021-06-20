@@ -4,10 +4,11 @@
 namespace app\controllers;
 
 
+use app\models\Comment;
 use yii\rest\ActiveController;
 
 class CommentController extends ActiveController
 {
-    public $modelClass = 'app\models\Comment';
+    public $modelClass = Comment::class;
 
 }
