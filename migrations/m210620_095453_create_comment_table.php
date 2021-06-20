@@ -3,19 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%comments}}`.
+ * Handles the creation of table `{{%comment}}`.
  * Has foreign keys to the tables:
  *
- * - `{{%users}}`
+ * - `{{%user}}`
  */
-class m210619_101016_create_comments_table extends Migration
+class m210620_095453_create_comment_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%comments}}', [
+        $this->createTable('{{%comment}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'date' => $this->date()->notNull(),
@@ -25,17 +25,17 @@ class m210619_101016_create_comments_table extends Migration
 
         // creates index for column `user_id`
         $this->createIndex(
-            '{{%idx-comments-user_id}}',
-            '{{%comments}}',
+            '{{%idx-comment-user_id}}',
+            '{{%comment}}',
             'user_id'
         );
 
-        // add foreign key for table `{{%users}}`
+        // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-comments-user_id}}',
-            '{{%comments}}',
+            '{{%fk-comment-user_id}}',
+            '{{%comment}}',
             'user_id',
-            '{{%users}}',
+            '{{%user}}',
             'id',
             'CASCADE'
         );
@@ -46,18 +46,18 @@ class m210619_101016_create_comments_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%users}}`
+        // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-comments-user_id}}',
-            '{{%comments}}'
+            '{{%fk-comment-user_id}}',
+            '{{%comment}}'
         );
 
         // drops index for column `user_id`
         $this->dropIndex(
-            '{{%idx-comments-user_id}}',
-            '{{%comments}}'
+            '{{%idx-comment-user_id}}',
+            '{{%comment}}'
         );
 
-        $this->dropTable('{{%comments}}');
+        $this->dropTable('{{%comment}}');
     }
 }

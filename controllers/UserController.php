@@ -4,13 +4,13 @@
 namespace app\controllers;
 
 
-use app\models\Users;
+use app\models\User;
 use yii\rest\ActiveController;
 
 
-class UsersController extends ActiveController
+class UserController extends ActiveController
 {
-    public $modelClass = Users::class;
+    public $modelClass = User::class;
 
 
 /*    public function actionIndex()

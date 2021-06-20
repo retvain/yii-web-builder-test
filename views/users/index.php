@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-$this->title = 'Users';
+$this->title = 'User';
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 <div class="container">

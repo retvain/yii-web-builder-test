@@ -14,9 +14,9 @@
 Формат обмена данными - JSONПриложение может состоять из одной страницы, на которой будет информация о пользователе и его комментарии. Изменение статуса комментария и удаление - без перезагрузки страницы
 
 ### Создал миграции из консоли:
-    php yii migrate/create create_users_table --fields="name:string:notNull,born_date:date,city:string,phone_number:string:unique,avatar:string:defaultValue(null)"
+    php yii migrate/create create_user_table --fields="name:string:notNull,born_date:date,city:string,phone_number:string:unique,avatar:string:defaultValue(null)"
 
-    php yii migrate/create create_comments_table --fields="user_id:integer:notNull:foreignKey(users),date:date:notNull,text:text,published_at:boolean:notnull"
+    php yii migrate/create create_comment_table --fields="user_id:integer:notNull:foreignKey(user),date:date:notNull,text:text,published_at:boolean:notnull"
 
     php yii migrate
 
