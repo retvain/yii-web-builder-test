@@ -13,8 +13,15 @@
 Разработанные REST Api и приложение должны работать в рамках одного проекта.
 Формат обмена данными - JSONПриложение может состоять из одной страницы, на которой будет информация о пользователе и его комментарии. Изменение статуса комментария и удаление - без перезагрузки страницы
 
-### Для создания миграции из консоли:
-    yii migrate/create create_users_table --fields="name:string:notNull,born_date:date,city:string,phone_number:string:unique,avatar:string:defaultValue(null)"
+### Создал миграции из консоли:
+    php yii migrate/create create_users_table --fields="name:string:notNull,born_date:date,city:string,phone_number:string:unique,avatar:string:defaultValue(null)"
 
-    yii migrate/create create_comments_table --fields="user_id:integer:notNull:foreignKey(users),date:date:notNull,text:text,published_at:boolean:notnull"
+    php yii migrate/create create_comments_table --fields="user_id:integer:notNull:foreignKey(users),date:date:notNull,text:text,published_at:boolean:notnull"
 
+    php yii migrate
+
+### Seeds для наполнения БД:
+
+    @app/commands/SeedController
+
+    php yii seed

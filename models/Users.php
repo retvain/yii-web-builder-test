@@ -6,7 +6,7 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class users extends ActiveRecord
+class Users extends ActiveRecord
 {
 
 }

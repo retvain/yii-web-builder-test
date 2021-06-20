@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -13,12 +14,12 @@ $this->title = 'Users';
 <div class="container">
     <div class="row">
 
-
+        <?php foreach ($users as $user): ?>
         <div class="col-3">
             <div class="card" style="width: 18rem;">
                 <img src="http://placekitten.com/100/100" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title"><?= html::encode("{$user['name']}") ?></h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
                 </div>
@@ -33,6 +34,7 @@ $this->title = 'Users';
                 </div>
             </div>
         </div>
+        <?php endforeach; ?>
 
 
     </div>
