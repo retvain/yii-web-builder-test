@@ -24,6 +24,7 @@ class SeedController extends Controller
             $user->born_date = $faker->dateTimeBetween('1970-01-01', '2003-12-31')->format('Y-m-d');
             $user->city = $city[rand(0, 4)];
             $user->phone_number = $faker->phoneNumber;
+            $user->avatar = 'https://placekitten.com/50/50';
             $user->save();
         }
         for ($i = 1; $i <= 20; $i++) {
