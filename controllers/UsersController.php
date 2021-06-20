@@ -10,7 +10,7 @@ use yii\rest\ActiveController;
 
 class UsersController extends ActiveController
 {
-    public $modelClass = 'app\models\Users';
+    public $modelClass = Users::class;
 
 
 /*    public function actionIndex()
