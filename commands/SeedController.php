@@ -17,7 +17,7 @@ class SeedController extends Controller
         $faker = \Faker\Factory::create();
         $city = ['Orenburg', 'Moscow', 'S-Peterburg', 'N.Novgorod', 'Samara'];
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $user = new User();
             $user->setIsNewRecord(true);
             $user->name = $faker->userName;
@@ -27,9 +27,9 @@ class SeedController extends Controller
             $user->avatar = 'https://placekitten.com/50/50';
             $user->save();
         }
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 40; $i++) {
             $comment = new Comment();
-            $comment->user_id = rand(1, 20);
+            $comment->user_id = rand(1, 5);
             $comment->date = $faker->dateTimeBetween('2021-05-01', '2021-06-18')->format('Y-m-d H:i:s');
             $comment->text = $faker->text(200);
             $comment->published_at = true;
