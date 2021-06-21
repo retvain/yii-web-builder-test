@@ -27,12 +27,12 @@ class SeedController extends Controller
             $user->avatar = 'https://placekitten.com/50/50';
             $user->save();
         }
-        for ($i = 1; $i <= 40; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             $comment = new Comment();
             $comment->user_id = rand(1, 5);
             $comment->date = $faker->dateTimeBetween('2021-05-01', '2021-06-18')->format('Y-m-d H:i:s');
             $comment->text = $faker->text(200);
-            $comment->published_at = true;
+            $comment->published = rand(0,1);
             $comment->save();
 
         }

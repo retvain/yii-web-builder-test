@@ -20,7 +20,7 @@ class m210620_095453_create_comment_table extends Migration
             'user_id' => $this->integer()->notNull(),
             'date' => $this->date()->notNull(),
             'text' => $this->text(),
-            'published_at' => $this->boolean()->notnull(),
+            'published' => $this->boolean()->notnull(),
         ]);
 
         // creates index for column `user_id`

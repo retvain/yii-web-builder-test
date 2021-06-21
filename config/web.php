@@ -51,8 +51,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => \yii\rest\UrlRule::class, 'controller' => 'user'],
-                ['class' => \yii\rest\UrlRule::class, 'controller' => 'comment'],
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['user', 'comment']],
+                    /*[
+                        'pattern' => 'users/<userId:\d+>/comments',
+                        'route' => 'comment/index'
+                    ]*/
 
 //                '/users' => 'users/index',
 //                '/users/<id::\d+>' => 'users/show',
