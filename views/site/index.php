@@ -6,7 +6,7 @@ $this->title = 'My Yii Application';
 ?>
 
 <div class="site-index">
-<a href="<?= \yii\helpers\Url::to(['site/users']) ?>">test</a>
+<a href="<?= \yii\helpers\Url::to(['/test']) ?>">test</a>
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">Congratulations!</h1>
 

@@ -4,13 +4,15 @@
 namespace app\controllers;
 
 
+use app\models\EntryForm;
 use yii\web\Controller;
 use app\components\TestAction;
 
 class TestController extends BaseController
 {
 //    public $foo = 'variable';
-//    public $layout = 'test';
+    public $layout = 'test';
+
 
     public function actions()
     {
@@ -23,9 +25,10 @@ class TestController extends BaseController
 
     public function actionIndex()
     {
-        $test = 'test';
-        \Yii::$app->view->params['retvain'] = 'rtvn';
-        return $this->render('index', compact('test'));
+        \Yii::$app->view->title = 'testIndex';
+
+        $model = new EntryForm();
+        return $this->render('index', compact('model'));
     }
 
 //    public function actionTest()

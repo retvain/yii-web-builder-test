@@ -11,4 +11,8 @@ class siteUsersAsset extends AssetBundle
     public $js = [
         'js/siteUsers.js',
     ];
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
 }
