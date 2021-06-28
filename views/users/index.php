@@ -12,6 +12,7 @@ $this->title = 'User';
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 <div class="container">
+
     <div class="row">
 
         <?php foreach ($users as $user): ?>
