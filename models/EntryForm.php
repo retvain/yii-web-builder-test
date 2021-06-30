@@ -9,12 +9,15 @@ use yii\base\Model;
 class EntryForm extends Model
 {
 
-    public $name, $email, $text;
+    public $name, $email, $text, $topic;
 
     public function rules()
     {
         return [
-            [['name', 'email', 'text'], 'required'],
+            [['name', 'email', 'text',], 'required'],
+            ['topic', 'required', 'message' => 'Oops'],
+            ['topic', 'string', 'min' => 3, 'tooShort' => '3 min pls'],
+            ['topic', 'string', 'max' => 10, 'tooLong' => '10 max pls'],
             ['email', 'email'],
         ];
     }
@@ -26,6 +29,7 @@ class EntryForm extends Model
             'name' => 'CustomName:',
             'email' => 'CustomEmail:',
             'text' => 'CustomText:',
+            'topic' => 'Custom Theme:',
         ];
     }
 }

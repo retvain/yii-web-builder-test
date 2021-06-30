@@ -1,17 +1,33 @@
 <?php
 
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 ?>
 
 <div class="row-cols-12">
     <h2>Page with form</h2>
-    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium aliquam autem deserunt dolorem ducimus earum est illum iste labore laudantium nam nemo neque nihil nulla perspiciatis reprehenderit sequi veritatis?</p>
+    <?php Pjax::begin() ?>
+    <?php if (Yii::$app->session->hasFlash('success')): ?>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> <?= Yii::$app->session->getFlash('success') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    <?php endif; ?>
+    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium aliquam autem deserunt
+        dolorem ducimus earum est illum iste labore laudantium nam nemo neque nihil nulla perspiciatis reprehenderit
+        sequi veritatis?</p>
 
     <?php $form = ActiveForm::begin([
-            'id' => 'my-form',
+        'id' => 'my-form',
+        'enableClientValidation' => true,
         'options' => [
-                'class' => 'form-horizontal',
+            'data' => ['pjax' => true],
+            'class' => 'form-horizontal',
         ],
         'fieldConfig' => [
             'template' => "{label} \n <div class='col-md-5'>{input} </div> \n <div class='col-md-5'>{hint}</div> \n <div class='col-md-5'>{error}</div>",
@@ -24,8 +40,10 @@ use yii\widgets\ActiveForm;
 
     echo $form->field($model, 'email')->input('email', ['placeholder' => 'Insert Email']);
 
+    echo $form->field($model, 'topic')->input('text', ['placeholder' => 'Insert Message theme']);
+
     echo $form->field($model, 'text')->textarea([
-            'placeholder' => 'Insert text',
+        'placeholder' => 'Insert text',
         'rows' => '5',
     ]);
 
@@ -36,6 +54,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end() ?>
+    <?php Pjax::end() ?>
 </div>
 
 

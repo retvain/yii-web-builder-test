@@ -28,6 +28,23 @@ class TestController extends BaseController
         \Yii::$app->view->title = 'testIndex';
 
         $model = new EntryForm();
+
+
+        if($model->load(\Yii::$app->request->post()) && $model->validate())
+        {
+            if(\Yii::$app->request->isPjax)
+            {
+                \Yii::$app->session->setFlash('success', 'data accepted with Pjax');
+                $model = new EntryForm();
+            }else
+            {
+                \Yii::$app->session->setFlash('success', 'data taken as standard');
+                return $this->refresh();
+            }
+
+
+
+        }
         return $this->render('index', compact('model'));
     }
 
