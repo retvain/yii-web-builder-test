@@ -26,7 +26,7 @@ use yii\widgets\Pjax;
         'id' => 'my-form',
         'enableClientValidation' => true,
         'options' => [
-            'data' => ['pjax' => true],
+            'data' => ['pjax' => false],
             'class' => 'form-horizontal',
         ],
         'fieldConfig' => [
@@ -40,7 +40,7 @@ use yii\widgets\Pjax;
 
     echo $form->field($model, 'email')->input('email', ['placeholder' => 'Insert Email']);
 
-    echo $form->field($model, 'topic')->input('text', ['placeholder' => 'Insert Message theme']);
+    echo $form->field($model, 'topic', ['enableAjaxValidation' => true])->input('text', ['placeholder' => 'Insert Message theme']);
 
     echo $form->field($model, 'text')->textarea([
         'placeholder' => 'Insert text',
@@ -56,6 +56,29 @@ use yii\widgets\Pjax;
     <?php ActiveForm::end() ?>
     <?php Pjax::end() ?>
 </div>
+<?php
+$js = <<<JS
+    let form = $('#my-form');
+    form.on('beforeSubmit', function () {
+        let data = form.serialize();
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: data,
+            success: function (res){
+                console.log(res);
+                form[0].reset();
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+        return false;
+    });
+JS;
 
+$this->registerJs($js);
+
+?>
 
 

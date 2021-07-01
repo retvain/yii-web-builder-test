@@ -7,6 +7,8 @@ namespace app\controllers;
 use app\models\EntryForm;
 use yii\web\Controller;
 use app\components\TestAction;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class TestController extends BaseController
 {
@@ -29,8 +31,24 @@ class TestController extends BaseController
 
         $model = new EntryForm();
 
+        $model->load(\Yii::$app->request->post());
+        if (\Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            if ($model->validate())
+            {
 
-        if($model->load(\Yii::$app->request->post()) && $model->validate())
+                return ['message' => 'ok'];
+            }
+            else
+            {
+                return ActiveForm::validate($model);
+            }
+            //return ActiveForm::validateMultiple($model);
+        }
+
+
+
+        /*if($model->load(\Yii::$app->request->post()) && $model->validate())
         {
             if(\Yii::$app->request->isPjax)
             {
@@ -44,7 +62,7 @@ class TestController extends BaseController
 
 
 
-        }
+        }*/
         return $this->render('index', compact('model'));
     }
 

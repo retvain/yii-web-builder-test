@@ -1,35 +1,46 @@
 <?php
 
-
 namespace app\models;
-
 
 use yii\base\Model;
 
 class EntryForm extends Model
 {
 
-    public $name, $email, $text, $topic;
+    public $name;
+    public $email;
+    public $text;
+    public $topic;
 
     public function rules()
     {
         return [
-            [['name', 'email', 'text',], 'required'],
-            ['topic', 'required', 'message' => 'Oops'],
-            ['topic', 'string', 'min' => 3, 'tooShort' => '3 min pls'],
-            ['topic', 'string', 'max' => 10, 'tooLong' => '10 max pls'],
+            [['name', 'email', 'text'], 'required'],
             ['email', 'email'],
+            ['topic', 'validateCountry', 'skipOnEmpty' => false],
+//            ['topic', 'string', 'length' => [3, 5]],
+//            ['topic', 'string', 'min' => 3, 'tooShort' => '3 min'],
+//            ['topic', 'string', 'max' => 5, 'tooLong' => '5 max'],
+//            ['topic', 'required', 'message' => 'Oops'],
+//            ['topic', 'safe'],
         ];
     }
 
-    // set labels in form
+    public function validateCountry($attribute, $params)
+    {
+        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
+            $this->addError($attribute, 'Страна должна быть либо "USA" или "Indonesia".');
+        }
+    }
+
     public function attributeLabels()
     {
         return [
-            'name' => 'CustomName:',
-            'email' => 'CustomEmail:',
-            'text' => 'CustomText:',
-            'topic' => 'Custom Theme:',
+            'name' => 'Имя:',
+            'email' => 'E-mail:',
+            'text' => 'Текст:',
+            'topic' => 'Тема:',
         ];
     }
+
 }
