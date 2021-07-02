@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\models\Country;
 use app\models\EntryForm;
 use yii\web\Controller;
 use app\components\TestAction;
@@ -34,18 +35,14 @@ class TestController extends BaseController
         $model->load(\Yii::$app->request->post());
         if (\Yii::$app->request->isAjax) {
             \Yii::$app->response->format = Response::FORMAT_JSON;
-            if ($model->validate())
-            {
+            if ($model->validate()) {
 
                 return ['message' => 'ok'];
-            }
-            else
-            {
+            } else {
                 return ActiveForm::validate($model);
             }
             //return ActiveForm::validateMultiple($model);
         }
-
 
 
         /*if($model->load(\Yii::$app->request->post()) && $model->validate())
@@ -66,9 +63,28 @@ class TestController extends BaseController
         return $this->render('index', compact('model'));
     }
 
-//    public function actionTest()
-//    {
-//        return "hi bro";
-//    }
+    public function actionView()
+    {
+        $model = new Country();
+        $this->view->title = 'work with models';
+
+        //$countries = Country::find()->where("population < 100000000 AND code <> 'AU'")->all();
+
+        //for safe query
+        //$countries = Country::find()->where("population < :population AND code <> :code", [':code' => 'AU', ':population' => 100000000])->all();
+
+//        $countries = Country::find()->where([
+//            'code' => ['DE', 'FR', 'GB'],
+//            'status' => 1,
+//        ])->all();
+
+        //$countries = Country::find()->where(['like', 'name', 'uni'])->all();
+
+        $countries = Country::find()->orderBy('population', 'DESC')->all();
+
+
+
+        return $this->render('view', compact('countries'));
+    }
 
 }
