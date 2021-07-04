@@ -133,6 +133,23 @@ class TestController extends BaseController
         return $this->render('update', compact('country'));
     }
 
-    
+    public function actionDelete($code = '')
+    {
+        $this->layout = 'test';
+        $this->view->title = 'Delete';
+
+        $country = Country::findOne($code);
+
+        if($country) {
+            if ($country->delete() !== false){
+                \Yii::$app->session->setFlash('success', 'has ben deleted');
+            }else{
+                \Yii::$app->session->setFlash('error', 'Error');
+            }
+        }
+
+        return $this->render('delete', compact('country'));
+    }
+
 
 }
