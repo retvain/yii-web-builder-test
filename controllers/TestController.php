@@ -8,6 +8,7 @@ use app\models\Country;
 use app\models\EntryForm;
 use yii\web\Controller;
 use app\components\TestAction;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -100,9 +101,8 @@ class TestController extends BaseController
             return ActiveForm::validate($country);
         }
 
-        $result = $country->load(\Yii::$app->request->post());
-        //dmp($country, 1);
         //Если данные получены реквестом методом пост И данные провалидированы успешно
+        $result = $country->load(\Yii::$app->request->post());
         if ($result && $country->save()) {
             return $this->refresh();
         }
@@ -115,9 +115,24 @@ class TestController extends BaseController
         $this->layout = 'test';
         $this->view->title = 'Update';
 
-        $country = new Country();
+        $country = Country::findOne('UA');
+
+        //проверяем существование такой страны
+        if (!$country){
+            //если не существует, кидаем 404, с сообщением
+            throw new NotFoundHttpException('Country not found');
+        }
+
+        //Если данные получены реквестом методом пост И данные провалидированы успешно
+        $result = $country->load(\Yii::$app->request->post());
+        if ($result && $country->save()) {
+            \Yii::$app->session->setFlash('success', 'successful');
+            return $this->refresh();
+        }
 
         return $this->render('update', compact('country'));
     }
+
+    
 
 }
