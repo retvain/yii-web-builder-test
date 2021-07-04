@@ -66,6 +66,7 @@ class TestController extends BaseController
     public function actionView()
     {
         $model = new Country();
+        $this->layout = 'test';
         $this->view->title = 'work with models';
 
         //$countries = Country::find()->where("population < 100000000 AND code <> 'AU'")->all();
@@ -83,8 +84,40 @@ class TestController extends BaseController
         $countries = Country::find()->orderBy('population', 'DESC')->all();
 
 
-
         return $this->render('view', compact('countries'));
+    }
+
+    public function actionCreate()
+    {
+        $this->layout = 'test';
+        $this->view->title = 'work with models';
+
+        $country = new Country();
+
+        if (\Yii::$app->request->isAjax) {
+            $country->load(\Yii::$app->request->post());
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($country);
+        }
+
+        $result = $country->load(\Yii::$app->request->post());
+        //dmp($country, 1);
+        //Если данные получены реквестом методом пост И данные провалидированы успешно
+        if ($result && $country->save()) {
+            return $this->refresh();
+        }
+
+        return $this->render('create', compact('country'));
+    }
+
+    public function actionUpdate()
+    {
+        $this->layout = 'test';
+        $this->view->title = 'Update';
+
+        $country = new Country();
+
+        return $this->render('update', compact('country'));
     }
 
 }
