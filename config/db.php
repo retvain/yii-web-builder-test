@@ -6,6 +6,7 @@ return [
     'username' => 'retvain',
     'password' => 'retvain',
     'charset' => 'utf8',
+    'tablePrefix' => 'wfm_'
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

@@ -18,4 +18,12 @@ class CategoryController extends BaseController
 
     }
 
+    public function actionView($id = null)
+    {
+        $category = Category::findOne($id);
+        $this->view->title = "Category: {$category->title}";
+
+        return $this->render('view', compact('category'));
+    }
+
 }
