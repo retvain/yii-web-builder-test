@@ -3,8 +3,9 @@
 
 namespace app\models;
 
+use \yii\db\ActiveRecord;
 
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
 
     public static function tableName()
@@ -12,9 +13,11 @@ class Category extends \yii\db\ActiveRecord
         return '{{%categories}}';
     }
 
-    public function getProducts()
+    public function getProducts($price = 1000)
     {
-        return $this->hasMany(Product::class, ['category_id' => 'id']);
+        return $this->hasMany(Product::class, ['category_id' => 'id'])
+            ->where('price < :price', [':price' => $price])
+            ->orderBy('price DESC');
     }
 
 }

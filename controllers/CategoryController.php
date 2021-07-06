@@ -22,8 +22,9 @@ class CategoryController extends BaseController
     {
         $category = Category::findOne($id);
         $this->view->title = "Category: {$category->title}";
+        $products = $category->getProducts(850)->all();
 
-        return $this->render('view', compact('category'));
+        return $this->render('view', compact('category','products'));
     }
 
 }
