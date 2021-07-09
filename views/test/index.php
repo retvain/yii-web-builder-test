@@ -7,6 +7,9 @@ use yii\widgets\Pjax;
 
 <div class="row-cols-12">
     <h2>Page with form</h2>
+    <?php \app\components\TestWidget::begin(['name' => 'retvain']) ?>
+<H1> some text</H1>
+    <?php \app\components\TestWidget::end() ?>
     <?php Pjax::begin() ?>
     <?php if (Yii::$app->session->hasFlash('success')): ?>
 
