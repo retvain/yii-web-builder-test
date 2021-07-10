@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Category;
+use yii\web\NotFoundHttpException;
 
 class CategoryController extends BaseController
 {
@@ -21,6 +22,9 @@ class CategoryController extends BaseController
     public function actionView($id = null)
     {
         $category = Category::findOne($id);
+        if (!$category){
+            throw new NotFoundHttpException("can't found category {$id}");
+        }
         $this->view->title = "Category: {$category->title}";
         $products = $category->getProducts(850)->all();
 

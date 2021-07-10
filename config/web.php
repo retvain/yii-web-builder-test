@@ -50,8 +50,11 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
                 ['class' => \yii\rest\UrlRule::class, 'controller' => ['user', 'comment', 'test']],
+                //получить url вида /category/1 в регулярке ожидается любое число
+                'category/<id:\d+>' => 'category/view'
 
                     /*[
                         'pattern' => 'users/<userId:\d+>/comments',
