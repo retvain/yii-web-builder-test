@@ -3,8 +3,8 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=mysql;dbname=yii2webtest',
-    'username' => 'retvain',
-    'password' => 'retvain',
+    'username' => 'root',
+    'password' => 'password',
     'charset' => 'utf8',
     'tablePrefix' => 'wfm_'
 

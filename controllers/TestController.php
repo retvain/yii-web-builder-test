@@ -151,5 +151,13 @@ class TestController extends BaseController
         return $this->render('delete', compact('country'));
     }
 
+    public function actionQform()
+    {
+        $this->layout = 'test';
+        $this->view->title = 'qform';
+
+        return $this->render('qform');
+    }
+
 
 }
